@@ -21,20 +21,14 @@ function x = eliminacaoDeGauss(a,b);
   Fim Para}
   #}
 
-  % Exemplo de entrada
-  a = [2, -1, 1;
-       3, 3, 9;
-       3, 3, 5]; % matriz dos coeficientes
-
-  b = [2; -1; 4]; % vetor dos termos independentes
-
-  n = length(b); % tamanho do sistema
+  n = length(b)
 
   for k=1:n-1
     for i=k+1:n
+      % a(k,k) é o pivô / a divisão em si define os multiplicadores de linha
       fator = a(i,k) / a(k,k);
       for j=k:n
-        a(i,j) = a(i,j) - fator * a(k,j);
+        a(i,j) = a(i,j) - fator * a(k,j);  % Atualiza linha
       endfor
       b(i) = b(i) - fator * b(k);
     endfor
