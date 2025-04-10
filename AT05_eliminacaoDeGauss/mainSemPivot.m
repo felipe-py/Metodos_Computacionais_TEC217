@@ -5,11 +5,12 @@
 % Chamada da função que aplica o algoritmo de eliminação de gauss sem a utilização do
 % pivoteamento
 
-a = [2 3 -1;
-    4 4 -3;
-    2 -3 1];
+a = [10 2 -1;
+    -3 -5 2;
+    1 1 6;
+    ];
 
-b = [5 3 -1];
+b = [27 -61.5 -21.5];
 
 x = eliminacaoDeGauss(a,b);
 
