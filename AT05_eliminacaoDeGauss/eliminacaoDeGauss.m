@@ -9,52 +9,43 @@ function x = eliminacaoDeGauss(a,b);
 
   % Parte 1: Eliminação progressiva
 
-  #{
-  Para k = 1 : n-1 % Inicia as eliminações de 1 até n-1
-  Para i = k+1 : n % Eliminação para as linhas de k+1 até n
-  fator = ai,k / ak,k
-  Para j = k : n % realiza a operação dos elementos ao longo da linha
-  ai,j = ai,j – fator * ak,j
-  Fim Para
-  bi = bi – fator * bk
-  Fim Para
-  Fim Para}
-  #}
+  n = length(b);
 
-  n = length(b)
-
-  for k=1:n-1
-    for i=k+1:n
-      % a(k,k) é o pivô / a divisão em si define os multiplicadores de linha
+  fprintf('\n    --- Início da Eliminação Progressiva ---\n');
+  for k = 1:n-1
+    fprintf('\n --> Pivô na posição (%d,%d) da matriz = %.2f\n\n', k, k, a(k,k));
+    for i = k+1:n
       fator = a(i,k) / a(k,k);
-      for j=k:n
-        a(i,j) = a(i,j) - fator * a(k,j);  % Atualiza linha
-      endfor
+     fprintf('Linha %d sendo atualizada com fator (%.2f / %.2f) = %.2f\n', i, a(i,k), a(k,k), fator);
+      for j = k:n
+        a(i,j) = a(i,j) - fator * a(k,j);
+      end
       b(i) = b(i) - fator * b(k);
-    endfor
-  endfor
+    end
 
+    % Print do estado atual da matriz A e vetor B
+    fprintf('\nMatriz A após passo %.2f:\n', k);
+    disp(a);
+    fprintf('\nVetor b após passo %.2f:\n', k);
+    disp(b);
+  end
+  fprintf('\n    --- Fim da Eliminação Progressiva ---\n\n');
+
+  
   % Parte 2: Substituição progressiva
 
-  #{
-  Xn = bn / an,n
-  Para i = n-1 : -1 : 1 % início da retro-substituição partindo da penúltima linha
-  Soma = bi
-  Para j = i+1 : n % acumula o somatório para cada x já calculado
-  Soma = Soma – ai,j * xj
-  Fim Para
-  xi = soma / ai,i
-  Fim Para
-  #}
-
-  x = zeros(n, 1); % vetor solução inicializado
-
+  fprintf('    --- Início da Substituição Regressiva ---\n\n');
   x(n) = b(n) / a(n,n);
-  for i=n-1:-1:1
+  fprintf('x(%d) = %.2f\n', n, x(n));
+
+  for i = n-1:-1:1
     soma = b(i);
-    for j=i+1:n
+    for j = i+1:n
       soma = soma - a(i,j) * x(j);
-    endfor
+      fprintf('\nAtualizando soma na linha %d: %.2f\n', i, soma);
+    end
     x(i) = soma / a(i,i);
-  endfor
+    fprintf('x(%d) = %.2f\n', i, x(i));
+  end
+  fprintf('\n    --- Fim da Substituição Regressiva ---\n');
 
