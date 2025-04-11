@@ -14,6 +14,7 @@ b = [27 -61.5 -21.5];
 
 x = eliminacaoDeGauss(a,b);
 
+fprintf("\n\nRESULTADO FINAL:\n")
 for i=1:length(x)
   printf("x(%d): %.4f\n",i,x(i))
 endfor
