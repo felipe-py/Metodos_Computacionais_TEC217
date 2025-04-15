@@ -31,7 +31,7 @@ function x = eliminacaoDeGauss(a,b);
   end
   fprintf('\n    --- Fim da Eliminação Progressiva ---\n\n');
 
-  
+
   % Parte 2: Substituição progressiva
 
   fprintf('    --- Início da Substituição Regressiva ---\n\n');
