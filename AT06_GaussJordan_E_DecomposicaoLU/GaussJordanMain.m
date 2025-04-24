@@ -10,9 +10,5 @@ a = [-0.04 0.04 0.12;
 
 b = [3 1 0];
 
-x = EliminacaoGaussJordan(a,b);
+[x, I] = EliminacaoGaussJordan(a,b);
 
-fprintf("\n\nRESULTADO FINAL:\n")
-for i=1:length(x)
-  printf("x(%d): %.4f\n",i,x(i))
-endfor
