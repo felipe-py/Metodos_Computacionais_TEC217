@@ -3,7 +3,7 @@
 %MÉTODOS COMPUTACIONAIS - TEC217 2025.1
 
 % Chamada da função que aplica o algoritmo de eliminação de gauss com a utilização do
-% pivoteamento parcial
+% pivotamento parcial
 
 a = [2 -6 -1;
     -3 -1 7;
