@@ -1,4 +1,4 @@
-function [x, iter] = gaussSeidel(A, b, x0, tol, max_iter)
+function [x, iter] = gaussSeidel_2(A, b, x0, tol, max_iter)
   n = length(b);
   x = x0;
 
@@ -18,19 +18,19 @@ function [x, iter] = gaussSeidel(A, b, x0, tol, max_iter)
     beta(i) = soma / abs(A(i,i));
   end
 
-  fprintf('\n--- Verificação do critério de Seidel (Sassenfeld) ---\n\n');
+  fprintf('\n--- Verificação do critério de Seidel (Sassenfeld) ---\n');
   for i = 1:n
     fprintf('β_%d = %.4f\n', i, beta(i));
   end
   if max(beta) < 1
-    fprintf('\nCritério de Seidel satisfeito: algoritmo deve convergir.\n');
+    fprintf('Critério de Seidel satisfeito: algoritmo deve convergir.\n');
   else
     fprintf('Aviso: critério de Seidel NÃO satisfeito! Convergência não garantida.\n');
   end
 
-  fprintf('\n\n   --- Iniciando o método de Gauss-Seidel ---\n\n');
+  fprintf('\n--- Iniciando o método de Gauss-Seidel ---\n');
   fprintf('Tolerância relativa: %.4f\n', tol);
-  fprintf('Chute inicial: x = [%.4f, %.4f, %.4f]\n\n', x0);
+  fprintf('Chute inicial: x = [%.4f, %.4f, %.4f, %.4f]\n\n', x0);
 
   iter = 0;
   while iter < max_iter
@@ -53,7 +53,7 @@ function [x, iter] = gaussSeidel(A, b, x0, tol, max_iter)
     numerador = norm(x - x_old, inf);
     denominador = norm(x, inf);
     dr = numerador / denominador;
-    fprintf('\n  -> x = [%.6f, %.6f, %.6f], dr = %.6f\n\n', x, dr);
+    fprintf('  -> x = [%.6f, %.6f, %.6f, %.6f], dr = %.6f\n', x, dr);
 
     if dr < tol
       fprintf('\nConvergência atingida (dr < tolerância).\n');
@@ -68,6 +68,6 @@ function [x, iter] = gaussSeidel(A, b, x0, tol, max_iter)
   endif
 
   fprintf('\n--- Fim do método ---\n');
-  fprintf('Solução aproximada: x = [%.6f, %.6f, %.6f]\n', x);
+  fprintf('Solução aproximada: x = [%.6f, %.6f, %.6f, %.6f]\n', x);
   fprintf('Total de iterações: %d\n', iter);
 end
