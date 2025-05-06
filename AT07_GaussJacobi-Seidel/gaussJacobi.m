@@ -2,6 +2,26 @@ function [x, iter] = gaussJacobi(A, b, x0, tol, max_iter)
   n = length(b);
   x = x0;
   iter = 0;
+  
+  % Verificação do critério de convergência
+  fprintf('\n--- Verificando critério de convergência (diagonal dominante) ---\n');
+  convergente = true;
+  for i = 1:n
+    soma = sum(abs(A(i, :))) - abs(A(i, i));
+    if abs(A(i, i)) <= soma
+      convergente = false;
+      fprintf('Linha %d: |a_%d%d| = %.4f <= soma dos demais = %.4f --> NÃO atende\n', i, i, i, abs(A(i,i)), soma);
+    else
+      fprintf('Linha %d: |a_%d%d| = %.4f > soma dos demais = %.4f --> OK\n', i, i, i, abs(A(i,i)), soma);
+    end
+  end
+
+  if ~convergente
+    fprintf('\nAviso: O critério de convergência **não** é satisfeito.\n');
+    fprintf('O método pode não convergir!\n');
+  else
+    fprintf('\nCritério de convergência satisfeito. Prosseguindo com o método...\n');
+  end
 
   fprintf('\n--- Iniciando o método de Gauss-Jacobi ---\n');
   fprintf('Tolerância relativa: %.4f\n', tol);
